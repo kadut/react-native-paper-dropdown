@@ -140,11 +140,14 @@ const DropDown = forwardRef<TouchableWithoutFeedback, DropDownPropsInterface>(
       [value]
     );
 
+    const rootTestId = inputProps.testID ?? "dropdown";
+
     return (
       <Menu
         visible={visible}
         onDismiss={onDismiss}
         theme={theme}
+        testID={`${rootTestId}-menu`}
         anchor={
           <TouchableRipple
             ref={ref}
@@ -177,6 +180,7 @@ const DropDown = forwardRef<TouchableWithoutFeedback, DropDownPropsInterface>(
       >
         <ScrollView
           bounces={false}
+          testID={`${rootTestId}-scrollview`}
           style={{
             ...(dropDownContainerHeight
               ? {
@@ -219,6 +223,7 @@ const DropDown = forwardRef<TouchableWithoutFeedback, DropDownPropsInterface>(
                         ? dropDownItemSelectedStyle
                         : dropDownItemStyle),
                     }}
+                    testID={`${rootTestId}-item-${_item.custom || _item.label}`}
                   />
                   {multiSelect && (
                     <Checkbox.Android
